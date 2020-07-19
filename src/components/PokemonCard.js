@@ -17,46 +17,58 @@ const PokemonCard = () => {
 
     return (
         <div className="pokemon-card">
-            <div className="name">
-                <h2>
-                    {name} #{id}
-                </h2>
-            </div>
-            <div className="image">
-                <img src={image} alt={name} />
-            </div>
-            <ul className="type">
-                {types.map((type) => (
-                    <li key={type.type.name}>{type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}</li>
-                ))}
-            </ul>
-            <div className="details">
-                <div className="height">
-                    <h4>Height:</h4>
-                    <p>{height} m</p>
+            <div className="container">
+                <div className="name">
+                    <h2>
+                        {name} <span>#{id}</span>
+                    </h2>
                 </div>
-                <div className="weight">
-                    <h4>Weight:</h4>
-                    <p>{weight} kg</p>
+                <div className="image">
+                    <img src={image} alt={name} />
                 </div>
-                <div className="abilities">
-                    <h4>Abilities:</h4>
-                    <ul>
-                        {abilities.map((ability) => (
-                            <li key={ability.ability.name}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-            <div className="stats">
-                <ul>
-                    {stats.map((stat) => (
-                        <li key={stat.stat.name}>
-                            <h4>{stat.stat.name.charAt(0).toUpperCase() + stat.stat.name.slice(1)}:</h4>
-                            <div>{stat.base_stat}</div>
+                <ul className="type">
+                    {types.map((type) => (
+                        <li key={type.type.name} className={type.type.name}>
+                            {type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1)}
                         </li>
                     ))}
                 </ul>
+            </div>
+
+            <div className="container">
+                <div className="details">
+                    <h3>Details</h3>
+                    <div className="height">
+                        <h4>Height:</h4>
+                        <p>{height} m</p>
+                    </div>
+                    <div className="weight">
+                        <h4>Weight:</h4>
+                        <p>{weight} kg</p>
+                    </div>
+                    <div className="abilities">
+                        <h4>Abilities:</h4>
+                        <ul>
+                            {abilities.map((ability) => (
+                                <li key={ability.ability.name}>{ability.ability.name.charAt(0).toUpperCase() + ability.ability.name.slice(1)}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container has-no-mb">
+                <div className="stats">
+                    <h3>Base Stats</h3>
+                    <ul>
+                        {stats.map((stat) => (
+                            <li key={stat.stat.name}>
+                                <h4>{stat.stat.name}:</h4>
+                                <div>{stat.base_stat}</div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );
