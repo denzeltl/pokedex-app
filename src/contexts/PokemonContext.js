@@ -14,7 +14,6 @@ const PokemonContextProvider = ({ children }) => {
         };
 
         fetchData();
-        console.log(pokemonData);
     }, []);
 
     return <PokemonContext.Provider value={{ pokemonApi, pokemonData }}>{children}</PokemonContext.Provider>;
