@@ -8,8 +8,8 @@ const PokemonCard = () => {
     const id = pokemonData.id < 100 ? `0${pokemonData.id}` : pokemonData.id;
     const image = { ...pokemonData.sprites }.front_default;
     const types = Object.keys({ ...pokemonData.types }).map((key) => pokemonData.types[key]);
-    const height = pokemonData.height * 0.1;
-    const weight = pokemonData.weight * 0.1;
+    const height = (pokemonData.height * 0.1).toFixed(2);
+    const weight = (pokemonData.weight * 0.1).toFixed(2);
     const abilities = Object.keys({ ...pokemonData.abilities }).map((key) => pokemonData.abilities[key]);
     const stats = Object.keys({ ...pokemonData.stats }).map((key) => pokemonData.stats[key]);
 
@@ -61,12 +61,60 @@ const PokemonCard = () => {
                 <div className="stats">
                     <h3>Base Stats</h3>
                     <ul>
-                        {stats.map((stat) => (
-                            <li key={stat.stat.name}>
-                                <h4>{stat.stat.name}:</h4>
-                                <div>{stat.base_stat}</div>
-                            </li>
-                        ))}
+                        <li>
+                            <div className="info">
+                                <h4>HP:</h4>
+                                <p>{{ ...stats[0] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg hp" style={{ width: ({ ...stats[0] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="info">
+                                <h4>Attack:</h4>
+                                <p>{{ ...stats[1] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg atk" style={{ width: ({ ...stats[1] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="info">
+                                <h4>Defense:</h4>
+                                <p>{{ ...stats[2] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg def" style={{ width: ({ ...stats[2] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="info">
+                                <h4>Sp. Atk:</h4>
+                                <p>{{ ...stats[3] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg sp-atk" style={{ width: ({ ...stats[3] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="info">
+                                <h4>Sp. Def:</h4>
+                                <p>{{ ...stats[4] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg sp-def" style={{ width: ({ ...stats[4] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="info">
+                                <h4>Speed:</h4>
+                                <p>{{ ...stats[5] }.base_stat}</p>
+                            </div>
+                            <div className="bar">
+                                <div className="bar-bg spd" style={{ width: ({ ...stats[5] }.base_stat / 255) * 100 + '%' }}></div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
