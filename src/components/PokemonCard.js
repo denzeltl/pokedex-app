@@ -8,6 +8,7 @@ const PokemonCard = () => {
     const id = pokemonData.id < 10 ? `00${pokemonData.id}` : pokemonData.id < 100 ? `0${pokemonData.id}` : pokemonData.id;
     const image = { ...pokemonData.sprites }.front_default;
     const types = Object.keys({ ...pokemonData.types }).map((key) => pokemonData.types[key]);
+    const firstType = types.filter((type) => type.slot === 1).map((type) => type.type.name);
     const height = (pokemonData.height * 0.1).toFixed(2);
     const weight = (pokemonData.weight * 0.1).toFixed(2);
     const abilities = Object.keys({ ...pokemonData.abilities }).map((key) => pokemonData.abilities[key]);
@@ -16,7 +17,7 @@ const PokemonCard = () => {
     return (
         <section>
             {hasData && (
-                <div className="pokemon-card">
+                <div className={`pokemon-card ${firstType[0]}`}>
                     <div className="container">
                         <div className="name">
                             <h2>
@@ -24,7 +25,7 @@ const PokemonCard = () => {
                             </h2>
                         </div>
                         <div className="image">
-                            <img src={image} alt={name} />
+                            <img src={image} alt={name} width="160" height="160" />
                         </div>
                         <ul className="type">
                             {types.map((type) => (

@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './Header';
 import Searchbar from './Searchbar';
 import PokemonCard from './PokemonCard';
-import PokemonContextProvider from '../contexts/PokemonContext';
+import Loader from 'react-loader-spinner';
+import { PokemonContext } from '../contexts/PokemonContext';
 
 function App() {
+    const { isLoading } = useContext(PokemonContext);
+
     return (
         <div className="app">
-            <PokemonContextProvider>
-                <Header />
-                <Searchbar />
-                <PokemonCard />
-            </PokemonContextProvider>
+            <Header />
+            <Searchbar />
+            {isLoading ? <Loader className="loader" type="ThreeDots" color="#999" /> : <PokemonCard />}
         </div>
     );
 }
