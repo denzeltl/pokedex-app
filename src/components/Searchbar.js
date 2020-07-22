@@ -1,14 +1,28 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { PokemonContext } from '../contexts/PokemonContext';
 
 const Searchbar = () => {
     const [value, setValue] = useState('');
-    const { getData } = useContext(PokemonContext);
+    const { getData, pokemonList } = useContext(PokemonContext);
 
-    const handleChange = (e) => setValue(e.target.value);
+    useEffect(() => {
+        console.log(value.length);
+        if (value.length <= 2) {
+            return;
+        } else {
+            const queryList = pokemonList.filter((pokemon) => pokemon.name.includes(value));
+            console.log(queryList);
+        }
+    }, [value]);
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
-        getData(value);
+        if (value.length >= 3) {
+            getData(value);
+        }
     };
 
     return (
