@@ -6,13 +6,14 @@ import Loader from 'react-loader-spinner';
 import { PokemonContext } from '../contexts/PokemonContext';
 
 function App() {
-    const { isLoading } = useContext(PokemonContext);
+    const { isLoading, noPokemon } = useContext(PokemonContext);
 
     return (
         <div className="app">
             <Header />
             <Searchbar />
             {isLoading ? <Loader className="loader" type="ThreeDots" color="#999" /> : <PokemonCard />}
+            {noPokemon && <h2 className="no-pokemon">Sorry, no pokemon found.</h2>}
         </div>
     );
 }
