@@ -1,17 +1,21 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { PokemonContext } from '../contexts/PokemonContext';
+import SearchList from './SearchList';
 
 const Searchbar = () => {
     const [value, setValue] = useState('');
-    const { getData, pokemonList } = useContext(PokemonContext);
+    const { getData, pokemonList, setShowSearchList, setSearchList } = useContext(PokemonContext);
 
     useEffect(() => {
-        console.log(value.length);
         if (value.length <= 2) {
+            setShowSearchList(false);
             return;
         } else {
             const queryList = pokemonList.filter((pokemon) => pokemon.name.includes(value));
-            console.log(queryList);
+            setSearchList(queryList);
+            if (queryList.length) {
+                setShowSearchList(true);
+            }
         }
     }, [value]);
 
@@ -28,6 +32,7 @@ const Searchbar = () => {
     return (
         <form className="searchbar" onSubmit={handleSubmit}>
             <input type="text" placeholder="Enter a pokemon..." value={value} onChange={handleChange} />
+            <SearchList />
         </form>
     );
 };

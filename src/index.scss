@@ -16,6 +16,10 @@ body {
     color: #333;
 }
 
+input {
+    font-family: 'Mukta', sans-serif;
+}
+
 ul {
     list-style: none;
 }
@@ -37,6 +41,7 @@ ul {
 
 .searchbar {
     margin-bottom: 1.3rem;
+    position: relative;
     input {
         width: 100%;
         padding: 0.5rem 1.2rem;
@@ -48,6 +53,43 @@ ul {
         transition: all 0.2s;
         &:hover {
             border-color: #333;
+        }
+    }
+}
+
+.search-list {
+    background: rgb(255, 255, 255);
+    border-radius: 1rem;
+    border: 0.1rem solid #999;
+    position: absolute;
+    top: 2.75rem;
+    left: 0;
+    width: 100%;
+    height: auto;
+    font-size: 1rem;
+    overflow: hidden;
+    max-height: 11rem;
+    overflow-y: auto;
+    li {
+        cursor: pointer;
+        padding: 0.4rem 1.2rem;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 91%;
+            border-bottom: 0.06rem solid rgb(214, 214, 214);
+        }
+        &:last-child {
+            &::after {
+                content: none;
+            }
+        }
+        &:hover {
+            background: rgb(235, 235, 235);
         }
     }
 }

@@ -5,11 +5,13 @@ export const PokemonContext = createContext();
 
 const PokemonContextProvider = ({ children }) => {
     const [pokemonList, setPokemonList] = useState([]);
+    const [searchList, setSearchList] = useState([]);
     const [pokemonApi, setPokemonApi] = useState('');
     const [pokemonData, setPokemonData] = useState({});
     const [hasData, setHasData] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [noPokemon, setNoPokemon] = useState(false);
+    const [showSearchList, setShowSearchList] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,9 +45,14 @@ const PokemonContextProvider = ({ children }) => {
         setNoPokemon(false);
         setHasData(true);
         setIsLoading(true);
+        setShowSearchList(false);
     };
 
-    return <PokemonContext.Provider value={{ pokemonApi, pokemonData, getData, hasData, isLoading, pokemonList, noPokemon }}>{children}</PokemonContext.Provider>;
+    return (
+        <PokemonContext.Provider value={{ pokemonApi, pokemonData, getData, hasData, isLoading, pokemonList, noPokemon, setSearchList, searchList, showSearchList, setShowSearchList }}>
+            {children}
+        </PokemonContext.Provider>
+    );
 };
 
 export default PokemonContextProvider;
