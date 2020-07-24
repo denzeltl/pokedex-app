@@ -1,14 +1,30 @@
 import React, { useContext } from 'react';
 import { PokemonContext } from '../contexts/PokemonContext';
 
-const SearchList = () => {
-    const { searchList, showSearchList } = useContext(PokemonContext);
+const SearchList = ({ setValue }) => {
+    const { searchList, showSearchList, getData } = useContext(PokemonContext);
+
+    const handleClick = (e) => {
+        getData(
+            e.target.textContent
+                .split(' ')
+                .map((word) => word.toLowerCase())
+                .join('-')
+        );
+        setValue('');
+    };
+
     return (
         <>
             {showSearchList && (
                 <ul className="search-list">
                     {searchList.map((pokemon) => (
-                        <li key={pokemon.name}>{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</li>
+                        <li onClick={handleClick} key={pokemon.name}>
+                            {pokemon.name
+                                .split('-')
+                                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                .join(' ')}
+                        </li>
                     ))}
                 </ul>
             )}

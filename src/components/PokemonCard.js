@@ -4,7 +4,12 @@ import { PokemonContext } from '../contexts/PokemonContext';
 const PokemonCard = () => {
     const { pokemonData, hasData } = useContext(PokemonContext);
 
-    const name = pokemonData.name && pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1);
+    const name =
+        pokemonData.name &&
+        pokemonData.name
+            .split('-')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
     const id = pokemonData.id < 10 ? `00${pokemonData.id}` : pokemonData.id < 100 ? `0${pokemonData.id}` : pokemonData.id;
     const image = { ...pokemonData.sprites }.front_default;
     const types = Object.keys({ ...pokemonData.types }).map((key) => pokemonData.types[key]);

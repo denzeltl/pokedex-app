@@ -20,19 +20,25 @@ const Searchbar = () => {
     }, [value]);
 
     const handleChange = (e) => {
-        setValue(e.target.value);
+        setValue(
+            e.target.value
+                .split(' ')
+                .map((word) => word.toLowerCase())
+                .join('-')
+        );
     };
     const handleSubmit = (e) => {
         e.preventDefault();
         if (value.length >= 3) {
             getData(value);
+            setValue('');
         }
     };
 
     return (
         <form className="searchbar" onSubmit={handleSubmit}>
             <input type="text" placeholder="Enter a pokemon..." value={value} onChange={handleChange} />
-            <SearchList />
+            <SearchList setValue={setValue} />
         </form>
     );
 };
