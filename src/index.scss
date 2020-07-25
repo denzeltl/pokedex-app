@@ -10,14 +10,15 @@ html {
 }
 
 body {
-    font-family: 'Mukta', sans-serif;
-    font-size: 16px;
     background: #eee;
     color: #333;
 }
 
-input {
-    font-family: 'Mukta', sans-serif;
+input,
+select,
+textarea,
+button {
+    font-family: inherit;
 }
 
 ul {
