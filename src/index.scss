@@ -180,7 +180,10 @@ ul {
         }
     }
     .image {
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
         img {
             width: 10rem;
         }
@@ -339,13 +342,129 @@ ul {
 
 /* Media Queries */
 @media screen and (min-width: 480px) {
+    html {
+        font-size: 17px;
+    }
+
+    body {
+        font-size: 17px;
+    }
+    .app {
+        max-width: 500px;
+    }
 }
 
 @media screen and (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+
+    body {
+        font-size: 18px;
+    }
+    .app {
+        max-width: 877px;
+        padding: 1.5rem 0;
+    }
+
+    .searchbar {
+        margin-bottom: 1.5rem;
+    }
+
+    .search-list {
+        max-height: 13rem;
+        li {
+            &::after {
+                width: 94%;
+            }
+        }
+    }
+
+    .pokemon-card {
+        padding: 1.4rem;
+        display: flex;
+        flex-wrap: wrap;
+        .container {
+            padding: 1.4rem 1.4rem;
+            margin-bottom: 1.4rem;
+            &--name {
+                width: 48%;
+            }
+            &--details {
+                margin-left: 1.4rem;
+                flex: 1;
+            }
+            &--stats {
+                width: 100%;
+            }
+        }
+        .name {
+            h2 {
+                line-height: 1.3;
+            }
+        }
+        .details {
+            & > div {
+                &.abilities {
+                    & > ul {
+                        li {
+                            display: block;
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+        .stats {
+            ul {
+                li {
+                    .info {
+                        width: 9rem;
+                    }
+                    .bar {
+                        margin-left: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 992px) {
-}
+    .app {
+        max-width: 940px;
+    }
 
-@media screen and (min-width: 1200px) {
+    .search-list {
+        li {
+            &::after {
+                width: 96%;
+            }
+        }
+    }
+
+    .pokemon-card {
+        .name {
+            h2 {
+                margin-bottom: 0.6rem;
+            }
+        }
+        .details {
+            & > div {
+                margin-bottom: 0.6rem;
+            }
+        }
+        .stats {
+            ul {
+                li {
+                    .info {
+                        width: 11rem;
+                    }
+                    .bar {
+                        margin-left: 1.6rem;
+                    }
+                }
+            }
+        }
+    }
 }

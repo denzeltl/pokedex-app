@@ -23,7 +23,7 @@ const PokemonCard = () => {
         <section>
             {hasData && (
                 <div className={`pokemon-card ${firstType[0]}`}>
-                    <div className="container">
+                    <div className="container container--name">
                         <div className="name">
                             <h2>
                                 {name} <span>#{id}</span>
@@ -41,7 +41,7 @@ const PokemonCard = () => {
                         </ul>
                     </div>
 
-                    <div className="container">
+                    <div className="container container--details">
                         <div className="details">
                             <h3>Details</h3>
                             <div className="height">
@@ -63,7 +63,7 @@ const PokemonCard = () => {
                         </div>
                     </div>
 
-                    <div className="container has-no-mb">
+                    <div className="container container--stats has-no-mb">
                         <div className="stats">
                             <h3>Base Stats</h3>
                             <ul>
